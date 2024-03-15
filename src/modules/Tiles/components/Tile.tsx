@@ -1,12 +1,9 @@
 import { ReactNode } from "react";
+import styles from "./Tile.module.css";
 
 /**
  * Not technically needed, just to make the demo look better.
  */
 export function Tile({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ padding: "10px", background: "red", margin: "10px" }}>
-      {children}
-    </div>
-  );
+  return <div className={styles.tile}>{children}</div>;
 }

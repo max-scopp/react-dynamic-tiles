@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { Counter } from "./modules/Counter/components/Counter";
+import { Tile } from "./modules/Tiles/components/Tile";
 import { TilePortal } from "./modules/Tiles/components/TilePortal";
 import { TileProvider } from "./modules/Tiles/components/TileProvider";
 
@@ -12,8 +13,15 @@ const TilesContent: React.FC = () => {
         Do the swap
       </button>
       <h2>BeforeMoved</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, auto)",
+          gap: "10px",
+        }}
+      >
         {!didMoved ? <TilePortal tileId="tile1" /> : null}
+        <TilePortal tileId="tile3" />
       </div>
 
       <h2>AfterMoved kept state</h2>
@@ -23,14 +31,31 @@ const TilesContent: React.FC = () => {
 };
 
 function App() {
-  const [tiles] = useLocalStorage<string[]>("tileStorage", ["tile1", "tile2"]);
+  const [tiles] = useLocalStorage<string[]>("tileStorage", [
+    "tile1",
+    "tile2",
+    "tile3",
+  ]);
 
   return (
     <div>
       <h1>Dynamic React Tiles</h1>
       <TileProvider
         tiles={tiles}
-        elements={{ tile1: <Counter />, tile2: <p>Tile 2</p> }}
+        elements={{
+          tile1: (
+            <Tile>
+              <Counter />
+            </Tile>
+          ),
+          tile2: <Tile>Second Tile</Tile>,
+          tile3: (
+            <Tile>
+              <b>Third Tile</b>
+              <Counter />
+            </Tile>
+          ),
+        }}
       >
         <TilesContent />
       </TileProvider>
