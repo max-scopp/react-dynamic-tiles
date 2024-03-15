@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import "./App.css";
 import { Counter } from "./modules/Counter/components/Counter";
 import { TilePortal } from "./modules/Tiles/components/TilePortal";
 import { TileProvider } from "./modules/Tiles/components/TileProvider";

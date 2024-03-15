@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
+import { ROOT_TILE_CONTAINER } from "../helpers/ROOT_TILE_CONTAINER";
 import { tileContainerSelector } from "../helpers/tileContainerSelector";
-import { ROOT_TILE_CONTAINER } from "./TileProvider";
 
 export function TilePortal({ tileId }: { tileId: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,6 +16,8 @@ export function TilePortal({ tileId }: { tileId: string }) {
     ref.current?.appendChild(container);
 
     return () => {
+      // when unmount - meaning the tile portal is no longer needed,
+      // place the portal container element back into the hidden collection of containers.
       ROOT_TILE_CONTAINER.append(container);
     };
   });
