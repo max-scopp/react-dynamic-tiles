@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { Counter } from "./modules/Counter/components/Counter";
 import { Tile } from "./modules/Tiles/components/Tile";
@@ -6,7 +5,9 @@ import { TilePortal } from "./modules/Tiles/components/TilePortal";
 import { TileProvider } from "./modules/Tiles/components/TileProvider";
 
 const TilesContent: React.FC = () => {
-  const [didMoved, setDidMoved] = useState(false);
+  // where and how the tiles are managed is up to you.
+  const [didMoved, setDidMoved] = useLocalStorage("didSwap", false);
+
   return (
     <>
       <button onClick={() => setDidMoved((oldMove) => !oldMove)}>
