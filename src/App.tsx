@@ -27,15 +27,15 @@ function App() {
   const [tiles] = useLocalStorage<string[]>("tileStorage", ["tile1", "tile2"]);
 
   return (
-    <>
-      <h1>Tile testing playground</h1>
+    <div>
+      <h1>Dynamic React Tiles</h1>
       <TileProvider
         tiles={tiles}
         elements={{ tile1: <Counter />, tile2: <p>Tile 2</p> }}
       >
         <TilesContent />
       </TileProvider>
-    </>
+    </div>
   );
 }
 
